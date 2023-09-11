@@ -1,12 +1,14 @@
 package com.bcaf.yagpspringbootrestapi.config;
 
 import com.bcaf.yagpspringbootrestapi.core.Crypto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -14,7 +16,6 @@ import javax.sql.DataSource;
 public class MainConfiguration {
     @Autowired
     private Environment environment;
-
 
     @Primary
     @Bean
@@ -27,4 +28,8 @@ public class MainConfiguration {
         return dataSourceBuilder.build();
     }
 
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
 }
